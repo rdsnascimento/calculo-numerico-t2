@@ -1,0 +1,124 @@
+<html>
+
+<head>
+	<title>Trabalho 2 - Secante</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="Secante/assets/css/bootstrap.min.css"> <!-- framework para interface grafica -->
+	<link rel="stylesheet" href="Secante/assets/css/formatacao.css"> <!-- formatacao da pagina -->
+	<script type="text/javascript" src="Secante/assets/js/jquery-3.3.1.min.js"></script> <!-- jquery -->
+</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Trabalho 2 - CNC</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="executar_newton.html">Método de Newton-Raphson</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" id="conteudo">
+				<!-- Titulo -->
+				<div class="row">
+					<div class="col-md-12">
+						<center><h3><span style="text-transform: capitalize;"> Método da Secante </span></h3></center>
+					</div>
+				</div><br/><br/>
+
+				<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<select class="form-control" id="menu">
+									<option value="0" disabled selected>Escolha o exercício</option>
+									<option value="1">1. Equação: cos(x) + 2sin(x) + x² || x0 = x1 = 0 || e1 = e2 = 0.001</option>
+									<option value="2">2. Equação: e^x * cos(x) || x0 = 1.2 || x1 = 1.3 || e1 = e2 = 0.00001</option>
+									<option value="3">3. Equação: x² - 2 || x0 = 0 || x1 = 1 || e1 = e2 = 0.001</option>
+								</select>
+							</div>
+						</div>
+				</div><br/>
+
+				<!-- LER a, b, x -->
+				<div class="row">
+					<div class="col-md-4">
+						<center><label for="x0">x0</label><input id="x0" type="text" class="form-control" pattern="[0-9]{.}" autocomplete="off" required/></center>
+					</div> <!-- Ler x0 -->
+					<div class="col-md-4">
+						<center><label for="x1">x1</label><input id="x1" type="text" class="form-control" pattern="[0-9]{.}" autocomplete="off" required/></center>
+					</div> <!-- Ler x1 -->
+					<div class="col-md-4">
+						<center><label for="e">Precisão</label><input id="e" type="text" class="form-control" pattern="[0-9]{.}" autocomplete="off" required/><br/></center>	<!-- Ler precisao -->
+					</div>
+				</div><br/>
+
+				<!-- Botao limpar e botao calcular -->
+				<div class="row">
+					<div class="col-md-6">
+						<button type="button" onClick="window.location.reload()" class="btn btn-danger btn-lg btn-block">Limpar</button> <!-- Limpar -->
+					</div>
+
+					<div class="col-md-6">
+						<button type="button" onclick="main();"" class="btn btn-primary btn-lg btn-block">Calcular</button> <!-- Calcular -->
+					</div>
+				</div>
+				<br/><br/><br/>
+
+				<!-- Resultado -->
+				<div class="row" id="tabela" style="display: none;">
+					<div style="font-size: 23px;"><center>Resultado</center><br/></div>
+					<div class="col-md-12">
+						<table class="table table-striped">
+							<thead>
+								<tr><th scope="col">i&nbsp&nbsp&nbsp</th><th scope="col">x</th><th scope="col">f(x)</th></tr> <!-- Títulos da tabela -->
+							</thead>
+							<tbody id="result"></tbody> <!-- Onde é mostrado o resultado -->
+						</table>
+					</div>
+				</div>
+				<br/>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+
+	<section>
+		<p><center><small>Desenvolvido por: Laerte Cardozo, Rafael Nascimento e Samuel Oliveira</small></center></p><br/>
+	</section>
+</body>
+
+<script>
+	$("#menu").change(function (){
+		if($("#menu").val() == 1){
+			$("#x0").val(0); //x0
+			$("#x1").val(-1); //x1
+			$("#e").val(0.001); //e
+		} else if($("#menu").val() == 2){
+			$("#x0").val(1.2); //x0
+			$("#x1").val(1.3); //x1
+			$("#e").val(0.00001); //e
+		} else if($("#menu").val() == 3){
+			$("#x0").val(0); //x0
+			$("#x1").val(1); //x1
+			$("#e").val(0.001); //e
+		}
+	});
+</script>
+
+<script type="text/javascript" src="calculo_secante.js"></script> <!-- script que faz os cálculos -->
+<script type="text/javascript" src="Secante/assets/js/menu_seletor.js"></script> <!-- script que faz os cálculos -->
+<script src="Secante/assets/js/bootstrap.min.js"></script> <!-- framework para interface grafica -->
+
+</html>
